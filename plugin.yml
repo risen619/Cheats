@@ -1,0 +1,18 @@
+name: MinecraftCheats
+main: com.github.risen619.MinecraftCheats.Main
+version: 1.0.0
+commands:
+    heal:
+        description: Heals you or mentioned player.
+        usage: /<command> <player>
+        aliases: [h]
+    feed:
+        description: Feeds you or mentioned player.
+        usage: /<command> <player>
+    speed:
+        description: Speeds up you or mentioned player.
+        usage: /<command> <duration> <amplifier> <player>
+    vanish:
+        description: Makes you or mentioned player invisible/visible.
+        usage: /<command> <player> <duration>
+        aliases: [v]
