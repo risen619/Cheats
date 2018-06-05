@@ -1,8 +1,11 @@
 package com.github.risen619.MinecraftCheats;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.Server;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 
 public class CheatsManager
 {
@@ -33,4 +36,19 @@ public class CheatsManager
 				return p;
 		return null;
 	}
+	
+	public void fillPlayerInventory(Player p, Material m, boolean isHard)
+	{
+		PlayerInventory inv = p.getInventory();
+		ItemStack item = new ItemStack(m);
+		item.setAmount(1);
+		
+		if(isHard) inv.clear();
+		for(int i=0; i<inv.getSize(); i++)
+		{
+			if(inv.getItem(i) == null)
+				inv.setItem(i, item);
+		}
+	}
+	
 }

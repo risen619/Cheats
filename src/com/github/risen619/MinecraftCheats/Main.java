@@ -2,10 +2,7 @@ package com.github.risen619.MinecraftCheats;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.github.risen619.MinecraftCheats.Executors.FeedExecutor;
-import com.github.risen619.MinecraftCheats.Executors.HealExecutor;
-import com.github.risen619.MinecraftCheats.Executors.SpeedExecutor;
-import com.github.risen619.MinecraftCheats.Executors.VanishExecutor;
+import com.github.risen619.MinecraftCheats.Executors.*;
 
 public class Main extends JavaPlugin
 {	
@@ -16,6 +13,9 @@ public class Main extends JavaPlugin
 		getCommand("feed").setExecutor(new FeedExecutor());
 		getCommand("speed").setExecutor(new SpeedExecutor());
 		getCommand("vanish").setExecutor(new VanishExecutor());
+		getCommand("burn").setExecutor(new BurnExecutor());
+		getCommand("hat").setExecutor(new HatExecutor());
+		getCommand("potato").setExecutor(new PotatoExecutor());
 		
 		CheatsManager.getInstance().setServer(getServer());
 		

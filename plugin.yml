@@ -3,7 +3,7 @@ main: com.github.risen619.MinecraftCheats.Main
 version: 1.0.0
 commands:
     heal:
-        description: Heals you or mentioned player.
+        description: Adds air and heals you or mentioned player.
         usage: /<command> <player>
         aliases: [h]
     feed:
@@ -16,3 +16,12 @@ commands:
         description: Makes you or mentioned player invisible/visible.
         usage: /<command> <player> <duration>
         aliases: [v]
+    burn:
+        description: Sets mentioned player burning.
+        usage: /<command> <player> <duration>
+    hat:
+        description: Puts block you hold on your head.
+        usage: /<command>
+    potato:
+        description: Fills mentioned player's inventory with potato, hard will replace his items.
+        usage: /<command> <player> [hard]

@@ -1,13 +1,14 @@
 package com.github.risen619.MinecraftCheats.Executors;
 
-import org.bukkit.attribute.Attribute;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 
-public class HealExecutor extends Executor
+public class HatExecutor extends Executor
 {
-	public HealExecutor() { super(1); }
+	public HatExecutor() { super(0); }
 	
 	@Override
 	public boolean onCommand(CommandSender s, Command c, String l, String[] args)
@@ -15,13 +16,11 @@ public class HealExecutor extends Executor
 		if(args.length > argsNumber) return false;
 		
 		Player p = (Player)s;
-		args = parseArgs(args);
+		PlayerInventory inv = p.getInventory();
 		
-		p = meOrOnlineOne(p, args[0]);
-		if(p == null) return true;
-		
-		p.setHealth(p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue());
-		p.setRemainingAir(p.getMaximumAir());
+		ItemStack inHand = inv.getItemInMainHand();
+		inv.setItemInMainHand(inv.getHelmet());
+		inv.setHelmet(inHand);
 		
 		return true;
 	}
