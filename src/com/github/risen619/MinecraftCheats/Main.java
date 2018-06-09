@@ -16,6 +16,7 @@ public class Main extends JavaPlugin
 		getCommand("burn").setExecutor(new BurnExecutor());
 		getCommand("hat").setExecutor(new HatExecutor());
 		getCommand("potato").setExecutor(new PotatoExecutor());
+		getCommand("trap").setExecutor(new TrapExecutor());
 		
 		CheatsManager.getInstance().setServer(getServer());
 		

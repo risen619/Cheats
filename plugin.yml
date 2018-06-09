@@ -25,3 +25,6 @@ commands:
     potato:
         description: Fills mentioned player's inventory with potato, hard will replace his items.
         usage: /<command> <player> [hard]
+    trap:
+        description: Traps mentioned player's
+        usage: /<command> <player> <block>
