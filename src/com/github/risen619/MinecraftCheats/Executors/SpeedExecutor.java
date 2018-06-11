@@ -16,9 +16,12 @@ public class SpeedExecutor extends Executor
 		if(args.length > argsNumber) return false;
 		
 		Player p = (Player)s;
-		int duration = 200;
+		int duration = Integer.MAX_VALUE;
 		int amplifier = 10;
 		args = parseArgs(args);
+		
+		p = meOrOnlineOne(p, args[2]);
+		if(p == null) return true;
 		
 		try
 		{
@@ -27,11 +30,16 @@ public class SpeedExecutor extends Executor
 		}
 		catch(NumberFormatException e) { return false; }
 		
-		p = meOrOnlineOne(p, args[2]);
-		if(p == null) return true;
+		if(p.getPotionEffect(PotionEffectType.SPEED) != null)
+		{
+			p.removePotionEffect(PotionEffectType.SPEED);
+			p.setFlySpeed(0.15f);
+			if(args[1] == null) return true;
+		}
 		
 		PotionEffect pe = new PotionEffect(PotionEffectType.SPEED, duration, amplifier);
 		p.addPotionEffect(pe);
+		p.setFlySpeed(0.7f);
 		
 		return true;
 	}

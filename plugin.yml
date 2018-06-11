@@ -21,10 +21,22 @@ commands:
         usage: /<command> <player> <duration>
     hat:
         description: Puts block you hold on your head.
-        usage: /<command>
+        usage: /<command> <player>
     potato:
         description: Fills mentioned player's inventory with potato, hard will replace his items.
         usage: /<command> <player> [hard]
     trap:
         description: Traps mentioned player's
         usage: /<command> <player> <block>
+    repair:
+        description: Repairs the item you hold in main hand.
+        usage: /<command>
+        aliases: [rep]
+    lightning:
+        description: Lightning strikes specified player.
+        usage: /<command> <player>
+        aliases: [thor, zeus, strike]
+    explosion:
+        description: Explodes specified player.
+        usage: /<command> <player>
+        aliases: [explode, boom]
