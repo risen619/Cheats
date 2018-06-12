@@ -5,33 +5,34 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffectType;
 
-public class SpeedExecutor extends PotionEffectExecutor
-{	
+public class SlowExecutor extends PotionEffectExecutor
+{
+	public SlowExecutor() { super(Integer.MAX_VALUE, 5); }
+	
 	@Override
 	public boolean onCommand(CommandSender s, Command c, String l, String[] args)
 	{
 		if(args.length > argsNumber) return false;
 		args = parseArgs(args);
-		
 
 		player((Player)s);
-		try { meOrOnlineOne(args[2]); }
+		try { meOrOnlineOne(args[0]); }
 		catch(NullPointerException e) { return true; }
 		
 		try
 		{
-			if(args[0] != null && !duration(20 * Integer.parseInt(args[0]))) return true;
-			if(args[1] != null && !amplifier(Integer.parseInt(args[1]))) return true;
+			if(args[1] != null && !duration(20 * Integer.parseInt(args[1]))) return true;
+			if(args[2] != null && !amplifier(Integer.min(Integer.parseInt(args[2]), 5))) return true;
+			
 		}
 		catch(NumberFormatException e) { return false; }
 		
-		switch(addEffect(player(), PotionEffectType.SPEED))
+		switch(addEffect(player(), PotionEffectType.SLOW))
 		{
 			case REMOVED: restoreFlySpeed(); break;
-			case ADDED_FOREVER: increaseFlySpeed(); break;
+			case ADDED_FOREVER: decreaseFlySpeed(); break;
 			case ADDED:
-				increaseFlySpeed();
-				
+				decreaseFlySpeed();
 				new Thread(new Runnable()
 				{	
 					@Override

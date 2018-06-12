@@ -14,11 +14,11 @@ public class LightningExecutor extends Executor
 		if(args.length != argsNumber) return false;
 		args = parseArgs(args);
 		
-		Player p = (Player)s;
-		if(args[0] != null) p = meOrOnlineOne(p, args[0]);
-		if(p == null) return true;
+		player((Player)s);
+		try { meOrOnlineOne(args[0]); }
+		catch(NullPointerException e) { return true; }
 		
-		p.getWorld().strikeLightning(p.getLocation());
+		player().getWorld().strikeLightning(player().getLocation());
 		
 		return true;
 	}

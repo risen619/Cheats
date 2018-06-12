@@ -13,15 +13,14 @@ public class HealExecutor extends Executor
 	public boolean onCommand(CommandSender s, Command c, String l, String[] args)
 	{
 		if(args.length > argsNumber) return false;
-		
-		Player p = (Player)s;
 		args = parseArgs(args);
 		
-		p = meOrOnlineOne(p, args[0]);
-		if(p == null) return true;
+		player((Player)s);
+		try { meOrOnlineOne(args[0]); }
+		catch(NullPointerException e) { return true; }
 		
-		p.setHealth(p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue());
-		p.setRemainingAir(p.getMaximumAir());
+		player().setHealth(player().getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue());
+		player().setRemainingAir(player().getMaximumAir());
 		
 		return true;
 	}

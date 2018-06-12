@@ -3,30 +3,30 @@ main: com.github.risen619.MinecraftCheats.Main
 version: 1.0.0
 commands:
     heal:
-        description: Adds air and heals you or mentioned player.
+        description: Adds air and heals you or specified player.
         usage: /<command> <player>
         aliases: [h]
     feed:
-        description: Feeds you or mentioned player.
+        description: Feeds you or specified player.
         usage: /<command> <player>
     speed:
-        description: Speeds up you or mentioned player.
+        description: Speeds up you or specified player.
         usage: /<command> <duration> <amplifier> <player>
     vanish:
-        description: Makes you or mentioned player invisible/visible.
+        description: Makes you or specified player invisible/visible.
         usage: /<command> <player> <duration>
         aliases: [v]
     burn:
-        description: Sets mentioned player burning.
+        description: Sets specified player burning.
         usage: /<command> <player> <duration>
     hat:
         description: Puts block you hold on your head.
         usage: /<command> <player>
     potato:
-        description: Fills mentioned player's inventory with potato, hard will replace his items.
+        description: Fills specified player's inventory with potato, hard will replace his items.
         usage: /<command> <player> [hard]
     trap:
-        description: Traps mentioned player's
+        description: Traps specified player's
         usage: /<command> <player> <block>
     repair:
         description: Repairs the item you hold in main hand.
@@ -40,3 +40,6 @@ commands:
         description: Explodes specified player.
         usage: /<command> <player>
         aliases: [explode, boom]
+    slow:
+        description: Slows you or specified player.
+        usage: /<command> <player> <duration> <amplifier>

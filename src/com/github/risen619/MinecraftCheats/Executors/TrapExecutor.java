@@ -17,13 +17,14 @@ public class TrapExecutor extends Executor
 	@Override
 	public boolean onCommand(CommandSender s, Command c, String l, String[] args)
 	{
-		if(args.length > argsNumber) return false;		
-		Player p = (Player)s;
+		if(args.length > argsNumber) return false;
+		args = parseArgs(args);		
 		Material m = Material.GLASS;
-		args = parseArgs(args);
 		
-		p = meOrOnlineOne(p, args[0]);
-		if(p == null) return true;
+		player((Player)s);
+		try { meOrOnlineOne(args[0]); }
+		catch(NullPointerException e) { return true; }
+		
 		if(args[1] != null)
 		{
 			for(Material mi : Material.values())
@@ -34,18 +35,18 @@ public class TrapExecutor extends Executor
 				}
 		}
 		
-		trap(p, m, 0, 2, 0);
-		trap(p, m, 0, -1, 0);
+		trap(player(), m, 0, 2, 0);
+		trap(player(), m, 0, -1, 0);
 		
-		trap(p, m, 1, 0, 0);
-		trap(p, m, 1, 1, 0);
-		trap(p, m, -1, 0, 0);
-		trap(p, m, -1, 1, 0);
+		trap(player(), m, 1, 0, 0);
+		trap(player(), m, 1, 1, 0);
+		trap(player(), m, -1, 0, 0);
+		trap(player(), m, -1, 1, 0);
 		
-		trap(p, m, 0, 0, 1);
-		trap(p, m, 0, 1, 1);
-		trap(p, m, 0, 0, -1);
-		trap(p, m, 0, 1, -1);
+		trap(player(), m, 0, 0, 1);
+		trap(player(), m, 0, 1, 1);
+		trap(player(), m, 0, 0, -1);
+		trap(player(), m, 0, 1, -1);
 		
 		return true;
 	}

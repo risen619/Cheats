@@ -12,12 +12,13 @@ public class FeedExecutor extends Executor
 	public boolean onCommand(CommandSender s, Command c, String l, String[] args)
 	{
 		if(args.length > argsNumber) return false;
-		
-		Player p = (Player)s;
 		args = parseArgs(args);
-		p = meOrOnlineOne(p, args[0]);
-		if(p != null)
-			p.setFoodLevel(20);
+
+		player((Player)s);
+		try { meOrOnlineOne(args[0]); }
+		catch(NullPointerException e) { return true; }
+		
+		player().setFoodLevel(20);
 		return true;
 	}
 

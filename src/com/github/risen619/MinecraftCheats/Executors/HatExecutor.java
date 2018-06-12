@@ -14,14 +14,13 @@ public class HatExecutor extends Executor
 	public boolean onCommand(CommandSender s, Command c, String l, String[] args)
 	{
 		if(args.length > argsNumber) return false;
-		
-		Player p = (Player)s;
 		args = parseArgs(args);
+
+		player((Player)s);
+		try { meOrOnlineOne(args[0]); }
+		catch(NullPointerException e) { return true; }
 		
-		p = meOrOnlineOne(p, args[0]);
-		if(p == null) return true;
-		
-		PlayerInventory inv = p.getInventory();
+		PlayerInventory inv = player().getInventory();
 		
 		ItemStack inHand = inv.getItemInMainHand();
 		inv.setItemInMainHand(inv.getHelmet());

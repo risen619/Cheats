@@ -11,20 +11,27 @@ abstract class Executor implements CommandExecutor
 {
 	protected final String playerNotFound = "This player is not online!";
 	
+	protected CheatsManager cm;
 	protected int argsNumber;
+	protected Player player;
 	
-	protected Executor() { }
-	protected Executor(int argsNumber) { this.argsNumber = argsNumber; }
+	protected Player player() { return player; }
+	protected void player(Player p) { this.player = p; }
 	
-	protected Player meOrOnlineOne(Player me, String playerToFind)
+	protected Executor() { cm = CheatsManager.getInstance(); }
+	protected Executor(int argsNumber) { this(); this.argsNumber = argsNumber; }
+	
+	protected void meOrOnlineOne(String playerToFind) throws NullPointerException
 	{
-		CheatsManager cm = CheatsManager.getInstance();
-		if(playerToFind == null) return me;
+		if(playerToFind == null) return;
 		
 		Player p = cm.getOnlinePlayer(playerToFind);
 		if(p == null)
-			cm.sendError(me, playerNotFound);
-		return p;
+		{
+			cm.sendError(player(), playerNotFound);
+			throw new NullPointerException(playerNotFound);
+		}
+		else player(p);
 	}
 	
 	protected String[] parseArgs(String[] args)
@@ -36,6 +43,6 @@ abstract class Executor implements CommandExecutor
 	}
 	
 	@Override
-	public abstract boolean onCommand(CommandSender arg0, Command arg1, String arg2, String[] arg3);
+	public abstract boolean onCommand(CommandSender s, Command c, String l, String[] args);
 
 }

@@ -12,6 +12,7 @@ public class Main extends JavaPlugin
 		getCommand("heal").setExecutor(new HealExecutor());
 		getCommand("feed").setExecutor(new FeedExecutor());
 		getCommand("speed").setExecutor(new SpeedExecutor());
+		getCommand("slow").setExecutor(new SlowExecutor());
 		getCommand("vanish").setExecutor(new VanishExecutor());
 		getCommand("burn").setExecutor(new BurnExecutor());
 		getCommand("hat").setExecutor(new HatExecutor());

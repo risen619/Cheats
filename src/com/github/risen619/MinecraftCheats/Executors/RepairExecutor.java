@@ -14,8 +14,8 @@ public class RepairExecutor extends Executor
 	{
 		if(args.length > argsNumber) return false;
 		
-		Player p = (Player)s;
-		ItemStack inHand = p.getInventory().getItemInMainHand();
+		player((Player)s);
+		ItemStack inHand = player().getInventory().getItemInMainHand();
 		inHand.setDurability((short)0);
 		
 		return true;

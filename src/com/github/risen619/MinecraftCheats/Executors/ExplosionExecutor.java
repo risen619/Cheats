@@ -13,12 +13,12 @@ public class ExplosionExecutor extends Executor
 	{
 		if(args.length != argsNumber) return false;
 		args = parseArgs(args);
+
+		player((Player)s);
+		try { meOrOnlineOne(args[0]); }
+		catch(NullPointerException e) { return true; }
 		
-		Player p = (Player)s;
-		if(args[0] != null) p = meOrOnlineOne(p, args[0]);
-		if(p == null) return true;
-		
-		p.getWorld().createExplosion(p.getLocation(), 0.5f);
+		player().getWorld().createExplosion(player().getLocation(), 0.5f);
 		
 		return true;
 	}
