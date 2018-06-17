@@ -11,7 +11,7 @@ commands:
         usage: /<command> <player>
     speed:
         description: Speeds up you or specified player.
-        usage: /<command> <duration> <amplifier> <player>
+        usage: /<command> <player> <duration> <amplifier>
     vanish:
         description: Makes you or specified player invisible/visible.
         usage: /<command> <player> <duration>

@@ -13,6 +13,9 @@ abstract class PotionEffectExecutor extends Executor
 		ADDED
 	}
 	
+	protected int defaultAmplifier = 10;
+	protected int defaultDuration = Integer.MAX_VALUE;
+	
 	protected int amplifier = 0;
 	protected int duration = 0;
 	
@@ -35,21 +38,27 @@ abstract class PotionEffectExecutor extends Executor
 	public PotionEffectExecutor(int duration, int amplifier)
 	{
 		super(3);
-		this.amplifier = amplifier;
-		this.duration = duration;
+		this.defaultAmplifier = amplifier;
+		this.defaultDuration = duration;
+	}
+	
+	protected void reset()
+	{
+		duration = defaultDuration;
+		amplifier = defaultAmplifier;
 	}
 	
 	protected void restoreFlySpeed() { player().setFlySpeed(0.15f); }
 	
 	protected void increaseFlySpeed()
 	{
-		float s = Float.min(0.15f, 0.15f * (amplifier / 2.0f));
+		float s = MathHelpers.clamp(0.15f, 1.0f, 0.15f * (amplifier / 2.0f));
 		player().setFlySpeed(Float.min(0.75f, s));
 	}
 
 	protected void decreaseFlySpeed()
 	{
-		float s = 0.15f / (amplifier <= 0 ? 1 : amplifier);
+		float s = MathHelpers.clamp(0.01f, 0.15f, (0.15f / (amplifier <= 0.0f ? 15.0f : amplifier)));
 		player().setFlySpeed(Float.max(0.01f, s));
 	}
 	
@@ -64,7 +73,6 @@ abstract class PotionEffectExecutor extends Executor
 		
 		PotionEffect pe = new PotionEffect(pet, duration, amplifier);
 		player().addPotionEffect(pe);
-		
 		return duration == Integer.MAX_VALUE ? AddEffectResult.ADDED_FOREVER : AddEffectResult.ADDED;
 	}
 	

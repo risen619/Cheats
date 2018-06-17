@@ -3,7 +3,6 @@ package com.github.risen619.MinecraftCheats.Executors;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.potion.PotionEffectType;
 
 public class VanishExecutor extends PotionEffectExecutor
@@ -13,6 +12,7 @@ public class VanishExecutor extends PotionEffectExecutor
 	{
 		if(args.length > argsNumber) return false;
 		args = parseArgs(args);
+		reset();
 
 		player((Player)s);
 		try { meOrOnlineOne(args[0]); }
@@ -26,9 +26,6 @@ public class VanishExecutor extends PotionEffectExecutor
 		catch(NumberFormatException e) { return false; }
 		
 		addEffect(player(), PotionEffectType.INVISIBILITY);
-		
-		for(PermissionAttachmentInfo pai : player().getEffectivePermissions())
-			player().sendMessage(pai.getPermission());
 		
 		return true;
 	}

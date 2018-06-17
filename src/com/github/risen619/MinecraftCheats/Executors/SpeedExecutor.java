@@ -12,16 +12,16 @@ public class SpeedExecutor extends PotionEffectExecutor
 	{
 		if(args.length > argsNumber) return false;
 		args = parseArgs(args);
+		reset();
 		
-
 		player((Player)s);
-		try { meOrOnlineOne(args[2]); }
+		try { meOrOnlineOne(args[0]); }
 		catch(NullPointerException e) { return true; }
 		
 		try
 		{
-			if(args[0] != null && !duration(20 * Integer.parseInt(args[0]))) return true;
-			if(args[1] != null && !amplifier(Integer.parseInt(args[1]))) return true;
+			if(args[1] != null && !duration(20 * Integer.parseInt(args[1]))) return true;
+			if(args[2] != null && !amplifier(Integer.parseInt(args[2]))) return true;
 		}
 		catch(NumberFormatException e) { return false; }
 		

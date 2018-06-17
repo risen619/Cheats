@@ -14,6 +14,7 @@ public class SlowExecutor extends PotionEffectExecutor
 	{
 		if(args.length > argsNumber) return false;
 		args = parseArgs(args);
+		reset();
 
 		player((Player)s);
 		try { meOrOnlineOne(args[0]); }
