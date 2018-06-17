@@ -21,6 +21,8 @@ public class Main extends JavaPlugin
 		getCommand("repair").setExecutor(new RepairExecutor());
 		getCommand("lightning").setExecutor(new LightningExecutor());
 		getCommand("explosion").setExecutor(new ExplosionExecutor());
+		getCommand("launch").setExecutor(new LaunchExecutor());
+		getCommand("fly").setExecutor(new FlyExecutor());
 		
 		CheatsManager.getInstance().setServer(getServer());
 		

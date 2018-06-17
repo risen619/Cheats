@@ -43,3 +43,9 @@ commands:
     slow:
         description: Slows you or specified player.
         usage: /<command> <player> <duration> <amplifier>
+    launch:
+        description: Launches specified player in air.
+        usage: /<command> <player> <force>
+    fly:
+        description: Toggle fly mode.
+        usage: /<command> <player>
