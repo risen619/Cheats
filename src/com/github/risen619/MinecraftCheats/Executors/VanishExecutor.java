@@ -1,17 +1,16 @@
 package com.github.risen619.MinecraftCheats.Executors;
 
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffectType;
 
+import com.github.risen619.MinecraftCheats.Argument.Command;
+
 public class VanishExecutor extends PotionEffectExecutor
 {	
 	@Override
-	public boolean onCommand(CommandSender s, Command c, String l, String[] args)
+	public boolean afterCommand(CommandSender s, Command c, String l, String[] args)
 	{
-		if(args.length > argsNumber) return false;
-		args = parseArgs(args);
 		reset();
 
 		player((Player)s);

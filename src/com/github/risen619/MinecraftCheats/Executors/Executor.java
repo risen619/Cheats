@@ -1,11 +1,14 @@
 package com.github.risen619.MinecraftCheats.Executors;
 
-import org.bukkit.command.Command;
+import java.util.List;
+
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.github.risen619.MinecraftCheats.CheatsManager;
+import com.github.risen619.MinecraftCheats.Main;
+import com.github.risen619.MinecraftCheats.Argument.Command;
 
 abstract class Executor implements CommandExecutor
 {
@@ -43,6 +46,20 @@ abstract class Executor implements CommandExecutor
 	}
 	
 	@Override
-	public abstract boolean onCommand(CommandSender s, Command c, String l, String[] args);
-
+	public boolean onCommand(CommandSender s, org.bukkit.command.Command c, String l, String[] args)
+	{
+		if(args.length > argsNumber) return false;
+		args = parseArgs(args);
+		Command command = Main.getPlugin(Main.class).getCustomCommand(c.getName());
+		List<String> errors = command.validateArguments(args);
+		if(errors.size() > 0)
+		{
+			CheatsManager.getInstance().sendError(s, errors.toArray(new String[errors.size()]));
+			return true;
+		}
+		
+		return afterCommand(s, command, l, args);
+	}
+	
+	public abstract boolean afterCommand(CommandSender s, Command c, String l, String[] args);
 }

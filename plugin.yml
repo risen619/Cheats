@@ -4,48 +4,48 @@ version: 1.0.0
 commands:
     heal:
         description: Adds air and heals you or specified player.
-        usage: /<command> <player>
+        usage: /<command> [player]
         aliases: [h]
     feed:
         description: Feeds you or specified player.
-        usage: /<command> <player>
+        usage: /<command> [player]
     speed:
         description: Speeds up you or specified player.
-        usage: /<command> <player> <duration> <amplifier>
+        usage: /<command> [player] [duration/%d/pos] [amplifier/%d/pos]
     vanish:
         description: Makes you or specified player invisible/visible.
-        usage: /<command> <player> <duration>
+        usage: /<command> [player] [duration/%d/pos]
         aliases: [v]
     burn:
         description: Sets specified player burning.
-        usage: /<command> <player> <duration>
+        usage: /<command> [player] [duration/%d/pos]
     hat:
         description: Puts block you hold on your head.
-        usage: /<command> <player>
+        usage: /<command> [player]
     potato:
         description: Fills specified player's inventory with potato, hard will replace his items.
-        usage: /<command> <player> [hard]
+        usage: /<command> [player] [hard/%s/^hard$]
     trap:
         description: Traps specified player's
-        usage: /<command> <player> <block>
+        usage: /<command> [player] [block]
     repair:
         description: Repairs the item you hold in main hand.
         usage: /<command>
         aliases: [rep]
     lightning:
         description: Lightning strikes specified player.
-        usage: /<command> <player>
+        usage: /<command> [player]
         aliases: [thor, zeus, strike]
     explosion:
         description: Explodes specified player.
-        usage: /<command> <player>
+        usage: /<command> [player]
         aliases: [explode, boom]
     slow:
         description: Slows you or specified player.
-        usage: /<command> <player> <duration> <amplifier>
+        usage: /<command> [player] [duration/%d/pos] [amplifier/%d/pos]
     launch:
         description: Launches specified player in air.
-        usage: /<command> <player> <force>
+        usage: /<command> [player] [force/%d/pos]
     fly:
         description: Toggle fly mode.
-        usage: /<command> <player>
+        usage: /<command> [player]

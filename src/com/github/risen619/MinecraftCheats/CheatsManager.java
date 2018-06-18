@@ -3,6 +3,7 @@ package com.github.risen619.MinecraftCheats;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Server;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
@@ -24,10 +25,24 @@ public class CheatsManager
 	public void setServer(Server server) { this.server = server; }
 	public Server getServer() { return this.server; }
 	
-	private void sendMessage(Player p, String message) { p.sendMessage(message); }
+	private void sendMessage(CommandSender p, String message) { p.sendMessage(message); }
+	private void sendMessage(CommandSender p, String[] message) { p.sendMessage(message); }
 	
-	public void sendError(Player p, String message) { sendMessage(p, ChatColor.RED + message); }
-	public void sendSuccess(Player p, String message) { sendMessage(p, ChatColor.GREEN + message); }
+	public void sendError(CommandSender p, String message) { sendMessage(p, ChatColor.RED + message); }
+	public void sendError(CommandSender p, String[] message)
+	{
+		for(int i = 0; i < message.length; i++)
+			message[i] = ChatColor.RED + message[i];
+		sendMessage(p, message);
+	}
+	
+	public void sendSuccess(CommandSender p, String message) { sendMessage(p, ChatColor.GREEN + message); }
+	public void sendSuccess(CommandSender p, String[] message)
+	{
+		for(int i = 0; i < message.length; i++)
+			message[i] = ChatColor.GREEN + message[i];
+		sendMessage(p, message);
+	}
 	
 	public Player getOnlinePlayer(String name)
 	{
