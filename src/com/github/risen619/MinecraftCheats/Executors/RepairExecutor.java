@@ -1,10 +1,10 @@
 package com.github.risen619.MinecraftCheats.Executors;
 
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import com.github.risen619.MinecraftCheats.Argument.Command;
+import com.github.risen619.MinecraftCheats.Executors.Classes.Executor;
 
 public class RepairExecutor extends Executor
 {
@@ -13,7 +13,6 @@ public class RepairExecutor extends Executor
 	@Override
 	public boolean afterCommand(CommandSender s, Command c, String l, String[] args)
 	{
-		player((Player)s);
 		ItemStack inHand = player().getInventory().getItemInMainHand();
 		inHand.setDurability((short)0);
 		

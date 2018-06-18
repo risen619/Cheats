@@ -5,29 +5,24 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.github.risen619.MinecraftCheats.Argument.Command;
+import com.github.risen619.MinecraftCheats.Executors.Classes.Executor;
 
 public class TrapExecutor extends Executor
 {
 	public TrapExecutor() { super(2); }
 	
 	private void trap(Player p, Material m, double x, double y, double z)
-	{
-		p.getLocation().add(x, y, z).getBlock().setType(m);
-	}
+	{ p.getLocation().add(x, y, z).getBlock().setType(m); }
 	
 	@Override
 	public boolean afterCommand(CommandSender s, Command c, String l, String[] args)
 	{	
 		Material m = Material.GLASS;
 		
-		player((Player)s);
-		try { meOrOnlineOne(args[0]); }
-		catch(NullPointerException e) { return true; }
-		
-		if(args[1] != null)
+		if(c.getArgument("block").value() != null)
 		{
 			for(Material mi : Material.values())
-				if(args[1].equalsIgnoreCase(mi.name()))
+				if(c.getArgument("block").value().equalsIgnoreCase(mi.name()))
 				{
 					m = mi;
 					break;

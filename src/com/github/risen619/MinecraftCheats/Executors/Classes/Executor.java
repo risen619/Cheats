@@ -1,4 +1,4 @@
-package com.github.risen619.MinecraftCheats.Executors;
+package com.github.risen619.MinecraftCheats.Executors.Classes;
 
 import java.util.List;
 
@@ -8,9 +8,10 @@ import org.bukkit.entity.Player;
 
 import com.github.risen619.MinecraftCheats.CheatsManager;
 import com.github.risen619.MinecraftCheats.Main;
+import com.github.risen619.MinecraftCheats.Argument.Argument;
 import com.github.risen619.MinecraftCheats.Argument.Command;
 
-abstract class Executor implements CommandExecutor
+public abstract class Executor implements CommandExecutor
 {
 	protected final String playerNotFound = "This player is not online!";
 	
@@ -52,10 +53,22 @@ abstract class Executor implements CommandExecutor
 		args = parseArgs(args);
 		Command command = Main.getPlugin(Main.class).getCustomCommand(c.getName());
 		List<String> errors = command.validateArguments(args);
+		
 		if(errors.size() > 0)
 		{
 			CheatsManager.getInstance().sendError(s, errors.toArray(new String[errors.size()]));
 			return true;
+		}
+		
+		int i=0;
+		for(Argument a : command.arguments())
+			a.value(args[i++]);
+
+		player((Player)s);
+		if(command.hasArgument("player"))
+		{
+			try { meOrOnlineOne(command.getArgument("player").value()); }
+			catch(NullPointerException e) { return true; }
 		}
 		
 		return afterCommand(s, command, l, args);

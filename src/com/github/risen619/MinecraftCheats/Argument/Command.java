@@ -14,6 +14,9 @@ public class Command
 {
 	private PluginCommand command;
 	private List<Argument> arguments;
+
+	public PluginCommand command() { return command; }
+	public List<Argument> arguments() { return arguments; }
 	
 	public Command(String name, List<Argument> args, CommandExecutor executor)
 	{
@@ -30,12 +33,30 @@ public class Command
 	
 	public Command(String name, CommandExecutor executor) { this(name, null, executor); }
 	
-	public PluginCommand command() { return command; }
-	
 	public List<String> validateArguments(String[] args)
 	{
 		return IntStream.range(0, arguments.size()).mapToObj(i -> arguments.get(i).validate(args[i]))
 		.filter(v -> !v.isEmpty()).collect(Collectors.toList());
+	}
+	
+	public boolean hasArgument(String s)
+	{
+		return getArgument(s) != null;
+	}
+	
+	public Argument getArgument(String s)
+	{
+		return arguments.stream().filter(v -> v.name().equalsIgnoreCase(s)).findFirst().orElse(null);
+	}
+	
+	public boolean setArgumentValue(String argument, String v)
+	{
+		Argument a = getArgument(argument);
+		
+		if(a != null) a.value(v);
+		else return false;
+		
+		return true;
 	}
 	
 	@Override

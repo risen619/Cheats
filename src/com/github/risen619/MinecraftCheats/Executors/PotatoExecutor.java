@@ -2,9 +2,9 @@ package com.github.risen619.MinecraftCheats.Executors;
 
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
 import com.github.risen619.MinecraftCheats.Argument.Command;
+import com.github.risen619.MinecraftCheats.Executors.Classes.Executor;
 
 public class PotatoExecutor extends Executor
 {
@@ -14,14 +14,10 @@ public class PotatoExecutor extends Executor
 	public boolean afterCommand(CommandSender s, Command c, String l, String[] args)
 	{
 		boolean isHard = false;
-
-		player((Player)s);
-		try { meOrOnlineOne(args[0]); }
-		catch(NullPointerException e) { return true; }
 		
-		if(args[1] != null)
+		if(c.getArgument("hard").value() != null)
 		{
-			if(!args[1].equalsIgnoreCase("hard"))
+			if(!c.getArgument("hard").value().equalsIgnoreCase("hard"))
 				return false;
 			isHard = true;
 		}

@@ -1,10 +1,13 @@
-package com.github.risen619.MinecraftCheats.Executors;
+package com.github.risen619.MinecraftCheats.Executors.Classes;
 
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-abstract class PotionEffectExecutor extends Executor
+import com.github.risen619.MinecraftCheats.Argument.Command;
+
+public abstract class PotionEffectExecutor extends Executor
 {
 	protected enum AddEffectResult
 	{
@@ -76,6 +79,8 @@ abstract class PotionEffectExecutor extends Executor
 		return duration == Integer.MAX_VALUE ? AddEffectResult.ADDED_FOREVER : AddEffectResult.ADDED;
 	}
 	
+	protected AddEffectResult addEffect(PotionEffectType pet) { return addEffect(player(), pet); }
+	
 	protected boolean durationValid()
 	{
 		if(duration < 0)
@@ -96,4 +101,31 @@ abstract class PotionEffectExecutor extends Executor
 		return true;
 	}
 	
+	@Override
+	public boolean afterCommand(CommandSender s, Command c, String l, String[] args)
+	{
+		reset();
+		
+		player((Player)s);
+		try { meOrOnlineOne(c.getArgument("player").value()); }
+		catch(NullPointerException e) { return true; }
+		
+		try
+		{
+			if(c.hasArgument("amplifier") && c.getArgument("amplifier").value() != null &&
+				!amplifier(Integer.parseInt( c.getArgument("amplifier").value() ))
+			)
+				return true;
+			
+			if(c.hasArgument("duration") && c.getArgument("duration").value() != null &&
+				!duration(20 * Integer.parseInt( c.getArgument("duration").value() ))
+			)
+				return true;
+		}
+		catch(NumberFormatException e) { return false; }
+		
+		return onPotionEffectCommand(s, c, l, args);
+	}
+	
+	public abstract boolean onPotionEffectCommand(CommandSender s, Command c, String l, String[] args);
 }

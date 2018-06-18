@@ -1,6 +1,6 @@
-package com.github.risen619.MinecraftCheats.Executors;
+package com.github.risen619.MinecraftCheats.Executors.Classes;
 
-class MathHelpers
+public class MathHelpers
 {
 	public static int clamp(int min, int max, int obj)
 	{

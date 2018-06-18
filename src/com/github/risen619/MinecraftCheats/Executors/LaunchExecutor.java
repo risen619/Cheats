@@ -1,10 +1,10 @@
 package com.github.risen619.MinecraftCheats.Executors;
 
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 import com.github.risen619.MinecraftCheats.Argument.Command;
+import com.github.risen619.MinecraftCheats.Executors.Classes.Executor;
 
 public class LaunchExecutor extends Executor
 {
@@ -15,11 +15,7 @@ public class LaunchExecutor extends Executor
 	{
 		int force = 100;
 		
-		player((Player)s);
-		try { meOrOnlineOne(args[0]); }
-		catch(NullPointerException e) { return true; }
-		
-		try { if(args[1] != null) force = Integer.parseInt(args[1]); }
+		try { if(c.getArgument("force").value() != null) force = Integer.parseInt(c.getArgument("force").value()); }
 		catch(NumberFormatException e) { return false; }
 		force = Integer.min(100, force);
 		
